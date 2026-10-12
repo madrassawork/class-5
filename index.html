@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ml"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>സ്വഹാബത്തിന്റെ ശ്രേഷ്ഠത - ക്വിസ്</title>
+<style>
+:root{--bg:#fff8ec;--fg:#3a1a14;--card:#fff;--ac:#8a1c1c;--ok:#1f7a3a;--no:#b3261e;--mut:#7a6a60;--bd:#e6d3b8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1412;--fg:#f6e9dc;--card:#2a1d1a;--ac:#f0a04b;--ok:#5fcf80;--no:#ff8a80;--mut:#b9a79a;--bd:#4a3630}}
+:root[data-theme="dark"]{--bg:#1d1412;--fg:#f6e9dc;--card:#2a1d1a;--ac:#f0a04b;--ok:#5fcf80;--no:#ff8a80;--mut:#b9a79a;--bd:#4a3630}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Sans Malayalam","Manjari",system-ui,sans-serif;line-height:1.6}
+.w{max-width:560px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;color:var(--ac);text-align:center;margin:8px 0}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.top{display:flex;justify-content:space-between;font-size:.9rem;color:var(--mut);margin-bottom:8px}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;margin-bottom:12px}
+#t{height:100%;width:100%;background:var(--ac);transition:width 1s linear}
+.q{font-size:1.1rem;font-weight:600;margin:6px 0 12px}
+button{font:inherit;color:inherit;width:100%;text-align:left;background:var(--bg);border:2px solid var(--bd);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+button.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--bg))}
+button.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 18%,var(--bg))}
+.p{background:var(--ac);color:var(--bg);text-align:center;font-weight:700;border-color:var(--ac)}
+.big{font-size:2.4rem;text-align:center;font-weight:700;color:var(--ac)}
+#fb{min-height:1.5em;font-size:.95rem;color:var(--mut)}
+</style></head><body><div class="w">
+<h1>സ്വഹാബത്തിന്റെ ശ്രേഷ്ഠത<br><small>ലൈവ് ക്വിസ്</small></h1>
+<div class="c" id="app"></div></div>
+<script>
+const Q=[
+["ആരാണ് സ്വഹാബികൾ?",["നബിയുടെ കുടുംബാംഗങ്ങൾ മാത്രം","വിശ്വാസികളായി നബിയോടൊപ്പം സഹവസിച്ച് മരണപ്പെട്ട അനുയായികൾ","മക്കയിലെ എല്ലാ ജനങ്ങളും","പ്രമുഖ പണ്ഡിതന്മാർ"],1,"വിശ്വാസികളായി നബിയോടൊപ്പം സഹവസിച്ച് മരണപ്പെട്ട അനുയായികളാണ് സ്വഹാബികൾ."],
+["ഇസ്‌ലാം ലോകത്ത് പ്രചരിച്ചത് ആരിലൂടെയാണ്?",["കച്ചവടക്കാരിലൂടെ","ഭരണാധികാരികളിലൂടെ","സ്വഹാബികളിലൂടെ","എഴുത്തുകാരിലൂടെ"],2,"സ്വഹാബികളിലൂടെയാണ് ഇസ്‌ലാം ലോകത്ത് പ്രചരിച്ചത്."],
+["സ്വഹാബികൾക്ക് വലിയ ശ്രേഷ്ഠതയുള്ളത് എന്തുകൊണ്ട്?",["അവർ ധനികരായതിനാൽ","അവർ അല്ലാഹുവിന്റെ മതത്തെയും പ്രവാചകനെയും സഹായിക്കുകയും ശരീരവും സമ്പത്തും കൊണ്ട് ധർമ്മസമരം ചെയ്യുകയും ചെയ്തതിനാൽ","അവർ നേതാക്കളായതിനാൽ","അവർ മക്കക്കാരായതിനാൽ"],1,"അവർ ശരീരം കൊണ്ടും സമ്പത്ത് കൊണ്ടും അല്ലാഹുവിന്റെ മാർഗത്തിൽ ധർമ്മസമരം ചെയ്തവരാണ്."],
+["സ്വഹാബിമാരെ വിമർശിക്കൽ ആരുടെ ലക്ഷണമാണ്?",["പണ്ഡിതന്മാരുടെ","കപടന്മാരുടെ","പുതുവിശ്വാസികളുടെ","ഭരണാധികാരികളുടെ"],1,"സ്വഹാബിമാരെ വിമർശിക്കൽ കപടന്മാരുടെ ലക്ഷണമാണ്."],
+["ഹദീസ് പ്രകാരം സ്വഹാബികളെ ഇഷ്ടപ്പെടുന്നത് ആരാണ്?",["വിശ്വാസികളല്ലാതെ ആരുമില്ല","എല്ലാവരും","കപടന്മാർ","ധനികർ മാത്രം"],0,"വിശ്വാസികളല്ലാതെ അവരെ ഇഷ്ടപ്പെടുകയില്ല; കപടന്മാരല്ലാതെ വെറുക്കുകയുമില്ല."],
+["ആരെങ്കിലും സ്വഹാബികളെ ഇഷ്ടപ്പെട്ടാൽ എന്ത് സംഭവിക്കും?",["ഒന്നും സംഭവിക്കില്ല","അല്ലാഹു അവനെ വെറുക്കും","അല്ലാഹു അവനെ ഇഷ്ടപ്പെടും","അവൻ നേതാവാകും"],2,"ആരെങ്കിലും അവരെ ഇഷ്ടപ്പെട്ടാൽ അല്ലാഹു അവനെ ഇഷ്ടപ്പെടും."],
+["സ്വഹാബികളെ പ്രശംസിക്കുന്ന ഖുർആൻ സൂക്തം ഏത് സൂറത്തിലാണ് (ആയത്ത് 100)?",["അൽ ബഖറ","അത്തൗബ","യാസീൻ","അൽ ഫാതിഹ"],1,"9-അത്തൗബഃ: 100 ആണ് ഈ സൂക്തം."],
+["ഖുർആൻ പറയുന്നതനുസരിച്ച് അല്ലാഹു ആരെപ്പറ്റി സംതൃപ്തനായിരിക്കുന്നു?",["മുഹാജിറുകളിൽ നിന്നും അൻസ്വാറുകളിൽ നിന്നും ആദ്യമായി മുന്നോട്ട് വന്നവരെയും അവരെ നന്മയിൽ പിന്തുടർന്നവരെയും","പണക്കാരെ മാത്രം","ഭരണാധികാരികളെ മാത്രം","ആരെയുമില്ല"],0,"മുഹാജിറുകളിലും അൻസ്വാറുകളിലും ആദ്യമായി മുന്നോട്ട് വന്നവരെയും അവരെ സുകൃതത്തോടെ പിന്തുടർന്നവരെയും പറ്റി അല്ലാഹു സംതൃപ്തനാണ്."],
+["അവർക്ക് ഒരുക്കിവെച്ചിരിക്കുന്നത് എന്താണ്?",["താഴ്ഭാഗത്ത് അരുവികൾ ഒഴുകുന്ന സ്വർഗത്തോപ്പുകൾ","വലിയ കൊട്ടാരങ്ങൾ മാത്രം","ഭൂമിയിലെ സമ്പത്ത്","ഒന്നുമില്ല"],0,"താഴ്ഭാഗത്ത് അരുവികൾ ഒഴുകുന്ന സ്വർഗത്തോപ്പുകൾ; അതത്രെ മഹത്തായ വിജയം."],
+["നബി ﷺ പറഞ്ഞു: \"എന്റെ ഉമ്മത്തിലെ ഉത്തമർ ...\"",["എന്റെ തലമുറയാകുന്നു","ഏറ്റവും ധനികർ","ഏറ്റവും പ്രായം കൂടിയവർ","അവസാന തലമുറ"],0,"എന്റെ ഉമ്മത്തിലെ ഉത്തമർ എന്റെ തലമുറയാകുന്നു; ശേഷം അവരെ തുടർന്ന് വരുന്നവർ (ബുഖാരി)."],
+["ഒരാൾ ഉഹ്ദ് മലയോളം സ്വർണം ചെലവഴിച്ചാലും എന്തിനോളം എത്തുകയില്ല?",["ഒരു ദിർഹമിനോളം","സ്വഹാബികൾ ചെലവഴിച്ച ഒരു കൈ കുമ്പിളിനോളമോ അതിന്റെ പകുതിയോളമോ","ഒരു മലയോളം","ഒരു ഒട്ടകത്തോളം"],1,"അവർ ചെലവഴിച്ച ഒരു കൈ കുമ്പിളിനോളമോ അതിന്റെ പകുതിയോളമോ എത്തുകയില്ല."],
+["\"ലാ തസുബ്ബൂ അസ്ഹാബീ\" എന്ന നബിവചനത്തിന്റെ അർത്ഥം?",["എന്റെ സ്വഹാബികളെ ചീത്ത പറയരുത്","എന്റെ സ്വഹാബികളെ പിന്തുടരരുത്","സ്വർണം ചെലവഴിക്കരുത്","ഉഹ്ദിൽ പോകരുത്"],0,"നിങ്ങൾ എന്റെ സ്വഹാബികളെ ചീത്ത പറയരുത് എന്നാണ് അർത്ഥം."],
+["സ്വഹാബികളോട് നമുക്കുള്ള കടപ്പാടുകൾ ഏതാണ്?",["വിമർശിക്കുക","സ്നേഹിക്കുക, ആദരിക്കുക, കാരുണ്യത്തിനും പാപമോചനത്തിനും വേണ്ടി പ്രാർഥിക്കുക","അവഗണിക്കുക","താരതമ്യം ചെയ്യുക"],1,"അവരെ സ്നേഹിക്കുക, ആദരിക്കുക, അവർക്ക് വേണ്ടി പ്രാർഥിക്കുക എന്നിവയാണ് കടപ്പാടുകൾ."]
+];
+const T=20,app=document.getElementById('app');let i,s,tm,left,done,R;
+function start(){i=0;s=0;R=[];show()}
+function show(){done=false;left=T;const q=Q[i];
+app.innerHTML=`<div class="top"><span>ചോദ്യം ${i+1}/${Q.length}</span><span>മാർക്ക്: ${s}</span><span id="tl">⏱ ${left}</span></div><div class="bar"><div id="t"></div></div><div class="q">${q[0]}</div>${q[1].map((o,k)=>`<button data-k="${k}">${o}</button>`).join('')}<div id="fb"></div>`;
+app.querySelectorAll('button[data-k]').forEach(b=>b.onclick=()=>ans(+b.dataset.k));
+clearInterval(tm);tm=setInterval(()=>{left--;document.getElementById('tl').textContent='⏱ '+left;document.getElementById('t').style.width=(left/T*100)+'%';if(left<=0)ans(-1)},1000)}
+function ans(k){if(done)return;done=true;clearInterval(tm);const q=Q[i];
+app.querySelectorAll('button[data-k]').forEach(b=>{const n=+b.dataset.k;b.disabled=true;if(n===q[2])b.classList.add('ok');else if(n===k)b.classList.add('no')});
+const m=k===q[2]?10:0;s+=m;R.push([i+1,m,k<0?'സമയം കഴിഞ്ഞു':k===q[2]?'ശരി':'തെറ്റ്']);
+
+document.getElementById('fb').textContent=(k===q[2]?'ശരിയാണ്! ✅ ':k<0?'സമയം കഴിഞ്ഞു ⏰ ':'തെറ്റ് ❌ ')+q[3]+' — മാർക്ക്: '+m+'/10';
+const nb=document.createElement('button');nb.className='p';nb.textContent=i<Q.length-1?'അടുത്തത് ▶':'ഫലം കാണുക';nb.onclick=()=>{i++;i<Q.length?show():end()};app.appendChild(nb)}
+function end(){const mx=Q.length*10;const pct=Math.round(s/mx*100);
+app.innerHTML=`<div class="big">${s} / ${mx} മാർക്ക്</div><p style="text-align:center">${pct>=70?'മാഷാ അല്ലാഹ്! മികച്ച പ്രകടനം 🌟':pct>=40?'നല്ല ശ്രമം! ഒന്നു കൂടി പാഠം വായിച്ചു നോക്കൂ 📖':'പാഠം ഒന്നു കൂടി വായിച്ച് വീണ്ടും ശ്രമിക്കൂ 📖'}</p><table style="width:100%;border-collapse:collapse;margin:10px 0">${R.map(r=>`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:4px">ചോദ്യം ${r[0]}</td><td>${r[2]}</td><td style="text-align:right">${r[1]}/10</td></tr>`).join('')}</table><button class="p" id="r">വീണ്ടും കളിക്കുക 🔁</button>`;
+document.getElementById('r').onclick=start}
+app.innerHTML=`<div class="q" style="text-align:center">12 ചോദ്യങ്ങൾ · ഓരോന്നിനും 20 സെക്കൻഡ്<br>ശരിയായ ഉത്തരത്തിന് 10 മാർക്ക് വീതം · ആകെ 120 മാർക്ക്</div><button class="p" id="s">ക്വിസ് തുടങ്ങാം ▶</button>`;
+document.getElementById('s').onclick=start;
+</script></body></html>
